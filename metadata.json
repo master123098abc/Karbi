@@ -1,0 +1,6 @@
+{
+  "name": "Kardom: Karbi Language App Blueprint",
+  "description": "Architectural roadmap and curriculum for a Karbi language learning app featuring Kids, Beginner, and Intermediate modes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
