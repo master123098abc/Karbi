@@ -16,8 +16,8 @@ export default function App() {
 
   if (mode === 'app') {
     return (
-      <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4 sm:p-8 font-sans">
-        <div className="relative w-full max-w-[420px] h-[85vh] min-h-[600px] bg-white sm:rounded-[3rem] overflow-hidden sm:shadow-2xl sm:ring-8 ring-slate-800 flex flex-col">
+      <div className="min-h-screen sm:bg-slate-900 sm:flex sm:items-center sm:justify-center sm:p-4 md:p-8 font-sans">
+        <div className="relative w-full h-[100dvh] sm:max-w-[420px] sm:h-[85vh] sm:min-h-[600px] bg-white sm:rounded-[3rem] overflow-hidden sm:shadow-2xl sm:ring-8 ring-slate-800 flex flex-col">
            <PrototypeApp onExit={() => setMode('blueprint')} />
         </div>
       </div>

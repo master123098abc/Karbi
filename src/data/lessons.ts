@@ -105,9 +105,94 @@ export const KIDS_LESSON_1 = [
     options: [
       { emoji: "🍎", value: "Apple" },
       { emoji: "🍚", value: "Rice" },
-      { emoji: "🍓", value: "Strawberry" }
+      { emoji: "🍓", value: "Strawberry" },
+      { emoji: "🥕", value: "Carrot" }
     ],
     correctAnswer: "Rice",
     mascotMsg: "I'm hungry! Give me some Sok!"
+  },
+  {
+    type: 'visual_match',
+    question: "Which one is 'Hem' (House)?",
+    options: [
+      { emoji: "🏠", value: "House" },
+      { emoji: "🚗", value: "Car" },
+      { emoji: "🌳", value: "Tree" },
+      { emoji: "☁️", value: "Cloud" }
+    ],
+    correctAnswer: "House",
+    mascotMsg: "'Hem' means House. Where we live!"
+  },
+  {
+    type: 'visual_match',
+    question: "Which one is 'Pi' (Mother)?",
+    options: [
+      { emoji: "👩🏽", value: "Mother" },
+      { emoji: "👨🏽", value: "Father" },
+      { emoji: "👶🏽", value: "Baby" },
+      { emoji: "👵🏽", value: "Grandma" }
+    ],
+    correctAnswer: "Mother",
+    mascotMsg: "Family is important. 'Pi' is Mother."
+  },
+  {
+    type: 'visual_match',
+    question: "Which one is 'Po' (Father)?",
+    options: [
+      { emoji: "👩🏽", value: "Mother" },
+      { emoji: "👨🏽", value: "Father" },
+      { emoji: "👧🏽", value: "Girl" },
+      { emoji: "👦🏽", value: "Boy" }
+    ],
+    correctAnswer: "Father",
+    mascotMsg: "'Po' means Father in Karbi."
+  },
+  {
+    type: 'simulated_audio',
+    question: "What sound is this? 'Lang'",
+    audioWord: "Lang",
+    translation: "Water",
+    options: [
+      { emoji: "💧", value: "Water" },
+      { emoji: "🍚", value: "Rice" }
+    ],
+    correctAnswer: "Water",
+    mascotMsg: "Listen to the word for Water!"
+  },
+  {
+    type: 'drag_and_drop',
+    question: "Put the 'Hem' (House) in the box",
+    options: [
+      { emoji: "🏠", value: "House" },
+      { emoji: "🚗", value: "Car" },
+      { emoji: "🚲", value: "Bicycle" },
+      { emoji: "⛺", value: "Tent" }
+    ],
+    correctAnswer: "House",
+    mascotMsg: "Can you find the Hem?"
+  },
+  {
+    type: 'visual_match',
+    question: "Which one is 'Men' (Name)?",
+    options: [
+      { emoji: "📛", value: "Name Badge" },
+      { emoji: "📅", value: "Calendar" },
+      { emoji: "📖", value: "Book" },
+      { emoji: "✏️", value: "Pencil" }
+    ],
+    correctAnswer: "Name Badge",
+    mascotMsg: "What is your 'Men'?"
+  },
+  {
+    type: 'visual_match',
+    question: "Which one is 'Kardom' (Hello)?",
+    options: [
+      { emoji: "👋🏽", value: "Waving Hand" },
+      { emoji: "🛑", value: "Stop" },
+      { emoji: "🏃🏽‍♂️", value: "Running" },
+      { emoji: "💤", value: "Sleeping" }
+    ],
+    correctAnswer: "Waving Hand",
+    mascotMsg: "'Kardom' is how we greet each other!"
   }
 ];

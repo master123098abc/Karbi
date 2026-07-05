@@ -1,7 +1,25 @@
-import { Heart, Flame, Hexagon, Star, Crown, ChevronLeft } from 'lucide-react';
+import { Heart, Flame, Hexagon, Star, Crown, ChevronLeft, Clock } from 'lucide-react';
 import { KIDS_PATH } from '../data/lessons';
+import { audio } from '../utils/audio';
 
-export default function LearningPath({ onStartLesson, onExit }: { onStartLesson: () => void, onExit: () => void }) {
+export default function LearningPath({ 
+  onStartLesson, 
+  onExit,
+  unlockedNodes,
+  xp,
+  streak
+}: { 
+  onStartLesson: (id: string) => void, 
+  onExit: () => void,
+  unlockedNodes: string[],
+  xp: number,
+  streak: number
+}) {
+  const handleStart = (id: string) => {
+    audio.playPop();
+    onStartLesson(id);
+  };
+
   return (
     <div className="flex flex-col h-full bg-[#f3f4f6]">
       {/* Top Bar */}
@@ -11,10 +29,10 @@ export default function LearningPath({ onStartLesson, onExit }: { onStartLesson:
          </button>
          <div className="flex gap-4">
            <div className="flex items-center gap-1.5 text-orange-500 font-bold">
-              <Flame className="w-5 h-5 fill-orange-500" /> 2
+              <Flame className="w-5 h-5 fill-orange-500" /> {streak}
            </div>
            <div className="flex items-center gap-1.5 text-blue-500 font-bold">
-              <Hexagon className="w-5 h-5 fill-blue-500" /> 150
+              <Hexagon className="w-5 h-5 fill-blue-500" /> {xp}
            </div>
            <div className="flex items-center gap-1.5 text-red-500 font-bold">
               <Heart className="w-5 h-5 fill-red-500" /> 5
@@ -40,8 +58,11 @@ export default function LearningPath({ onStartLesson, onExit }: { onStartLesson:
             {/* Nodes */}
             <div className="flex flex-col gap-6 items-center w-full py-4 relative">
               {unit.nodes.map((node, nIdx) => {
-                const isLocked = node.status === 'locked';
-                const isActive = node.status === 'active';
+                const isUnlocked = unlockedNodes.includes(node.id);
+                // The active node is the LAST unlocked node
+                const isLastUnlockedInAll = unlockedNodes[unlockedNodes.length - 1] === node.id;
+                const isLocked = !isUnlocked;
+                const isActive = isUnlocked && isLastUnlockedInAll;
                 
                 // Sine wave pattern for a curvy path
                 const pathOffsets = [0, -60, -90, -60, 0, 60, 90, 60, 0, 0];
@@ -50,7 +71,7 @@ export default function LearningPath({ onStartLesson, onExit }: { onStartLesson:
                 return (
                   <div key={node.id} className="relative" style={{ marginLeft: `${marginLeft}px` }}>
                     <button 
-                      onClick={() => !isLocked && onStartLesson()} 
+                      onClick={() => !isLocked && handleStart(node.id)} 
                       className={`relative w-20 h-20 rounded-full flex items-center justify-center text-white transition-all ${
                         isLocked 
                           ? 'bg-gray-300 shadow-[0_8px_0_rgb(156,163,175)] opacity-50 cursor-not-allowed' 
@@ -61,8 +82,9 @@ export default function LearningPath({ onStartLesson, onExit }: { onStartLesson:
                     </button>
                     {/* Floating Start tooltip for active node */}
                     {isActive && (
-                      <div className={`absolute -top-12 left-1/2 -translate-x-1/2 bg-white px-4 py-2 rounded-xl font-bold ${unit.color.replace('bg-', 'text-')} shadow-md border-2 border-gray-100 whitespace-nowrap animate-bounce z-10`}>
-                        Start!
+                      <div className={`absolute -top-16 left-1/2 -translate-x-1/2 bg-white px-4 py-2 rounded-xl font-bold ${unit.color.replace('bg-', 'text-')} shadow-md border-2 border-gray-100 whitespace-nowrap animate-bounce z-10 flex flex-col items-center`}>
+                        <span>Start!</span>
+                        <span className="text-xs text-gray-400 font-medium flex items-center gap-1"><Clock className="w-3 h-3" /> 15 Min</span>
                         <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-b-2 border-r-2 border-gray-100 rotate-45"></div>
                       </div>
                     )}
